@@ -1,10 +1,9 @@
 package com.linkedin.camus.example.schemaregistry;
 
 import org.apache.avro.Schema;
-import org.apache.hadoop.conf.Configuration;
 
-import com.linkedin.camus.example.records.DummyLog;
-import com.linkedin.camus.example.records.DummyLog2;
+import balaena.common.serde.avro.LogEvent;
+
 import com.linkedin.camus.schemaregistry.MemorySchemaRegistry;
 
 
@@ -14,9 +13,10 @@ import com.linkedin.camus.schemaregistry.MemorySchemaRegistry;
  * camus.properties
  */
 public class DummySchemaRegistry extends MemorySchemaRegistry<Schema> {
-  public DummySchemaRegistry(Configuration conf) {
-    super();
-    super.register("DUMMY_LOG", DummyLog.newBuilder().build().getSchema());
-    super.register("DUMMY_LOG_2", DummyLog2.newBuilder().build().getSchema());
-  }
+    public DummySchemaRegistry() {
+        super();
+        //        super.register("DUMMY_LOG", DummyLog.newBuilder().build().getSchema());
+        //        super.register("DUMMY_LOG_2", DummyLog2.newBuilder().build().getSchema());
+        super.register("logEventAvro", LogEvent.SCHEMA$);
+    }
 }
